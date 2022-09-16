@@ -9,7 +9,7 @@ local Window = Library:Window({
 local Flags = Library.Flags
 
 local StuffTab = Window:Tab({
-    Text = "Stuff"
+    Text = "Stuff"  
 })
 local KillAuraSection = StuffTab:Section({
     Text = "Kill Aura"
@@ -61,30 +61,14 @@ end
 KillAuraSection:Toggle({
     Text = "Enable Kill Aura",
     Flags = "KillAuraFlag",
-    Callback = function(Value)
-    KillAura = Value;
+    Callback = function(v)
+    KillAura = v;
         if ( KillAura ) then
             task.spawn(function()
                 while KillAura do
                     FuncKillAura()
                 end
             end)
-        end
-    end
-})
-
-KillAuraSection:Keybind({
-    Default = Enum.KeyCode.Z,
-    Text = "Kill Aura Keybind",
-    Callback = function(v)
-        if v then
-            while v do
-                FuncKillAura()
-                print('enabled')
-            end
-        else
-            return
-            print('disabled')
         end
     end
 })
