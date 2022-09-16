@@ -15,7 +15,7 @@ local KillAuraSection = StuffTab:Section({
     Text = "Kill Aura"
 })
 local DungeonsSection = StuffTab:Section({
-    Text = "Dungeons (Required lvl 15+)"
+    Text = "Dungeons (Required lvl 10+)"
 })
 
 local Workspace = game:GetService("Workspace")
@@ -57,6 +57,12 @@ function FuncKillAura()
         task.wait()
     end
 end
+
+local label = Section3:Label({
+    Text = "yeah no idea how to change this to a keybind.",
+    Color = Color3.fromRGB(217, 97, 99),
+    Tooltip = "if you know just make a pull request."
+})
 
 KillAuraSection:Toggle({
     Text = "Enable Kill Aura",
