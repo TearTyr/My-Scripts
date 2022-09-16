@@ -58,7 +58,7 @@ function FuncKillAura()
     end
 end
 
-local label = Section3:Label({
+local label = KillAuraSection:Label({
     Text = "yeah no idea how to change this to a keybind.",
     Color = Color3.fromRGB(217, 97, 99),
     Tooltip = "if you know just make a pull request."
