@@ -1,15 +1,18 @@
 -- Wait for game
 repeat task.wait() until game:IsLoaded();
-
---UI Library
-local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Libraries/main/Shaman/Library.lua'))()
+--[[
+    UI Library Made by ZCute(https://v3rmillion.net/member.php?action=profile&uid=1431869)
+        he makes cool libs!1!
+]]-- 
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/PPHUD/main/Library.lua'))()
+Library.Theme = "Dark"
 local Window = Library:Window({
-    Text = "Right 2 Fight"
+    Text = "Right 2 Fight Script"
 })
 local Flags = Library.Flags
 
 local StuffTab = Window:Tab({
-    Text = "Stuff"  
+    Text = "Everything"  
 })
 local KillAuraSection = StuffTab:Section({
     Text = "Kill Aura"
@@ -17,23 +20,47 @@ local KillAuraSection = StuffTab:Section({
 local DungeonsSection = StuffTab:Section({
     Text = "Dungeons"
 })
+local TPtoMobSection = StuffTab:Section({
+    Text = "TP to Mob"
+})
 
-local workspace = game:GetService("Workspace")
 local Dungeons = game:GetService("Workspace").Map.Dungeons
+local Blowjob = game.Players.LocalPlayer.Character.Head
+-- getgenvs
+getgenv().KillAura = false;
+getgenv().AutoFarm = false;
 -- Aura Related
-getgenv().KillAura = false; 
 local Move;
 -- Dungeon Related
 local Difficulty = ''
 local DungeonTable = {}
 local SelectedDungeon
+-- Auto TP Related
+local MobTable = {}
+local selectedMob;
 
 -- Getting All Possible Arenas
 for i,v in next, game:GetService("Workspace").Map.Dungeons:GetChildren() do
     table.insert(DungeonTable, v.Name)
 end
 
--- Credits to JOSHNXTDOOR for the open source Kill Aura https://v3rmillion.net/showthread.php?tid=1150826
+for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
+    if v:FindFirstChild("TouchInterest") then
+        if not table.find(MobTable,v.Parent.Name) then
+        table.insert(MobTable, v.Parent.Name)
+        end;
+    end;
+end
+
+function FuncTPtoMob()
+    for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
+        if v.Name == selectedMob and v.Parent then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+            firetouchinterest(Blowjob, v.Parent, 0)
+        end;
+    end;
+end
+
 function FuncKillAura()
     for i,v in next, game:GetService("Workspace").Bots.AI:GetChildren() do
         local A_1 = {
@@ -42,16 +69,15 @@ function FuncKillAura()
             [3] = Vector3.new(v.HumanoidRootPart.Position),
             [4] = game:GetService("ReplicatedFirst").Moves.BTStrike4,   
             [5] = Move,
-            [6] = 0.67969219472527
+            [6] = 1.4766920853780947
         }
         game:GetService("ReplicatedStorage").Events.ME:FireServer(A_1)
-        task.wait()
+        task.wait();
     end
 end
 
 KillAuraSection:Toggle({
-    Text = "Enable Kill Aura",
-    Flags = "KillAuraFlag",
+    Text = "Kill Aura",
     Callback = function(v)
     KillAura = v;
         if ( KillAura ) then
@@ -60,7 +86,7 @@ KillAuraSection:Toggle({
                     FuncKillAura()
                 end
             end)
-        end
+        end;
     end
 })
 
@@ -68,16 +94,15 @@ KillAuraSection:Toggle({
 local DifficultyDropDown = DungeonsSection:Dropdown({
     Text = "Difficulty",
     List = {'Easy', 'Normal', 'Hard', 'Legend'},
-    Callback = function(Value)
-        Difficulty = Value;
+    Callback = function(v)
+        Difficulty = v;
     end
 })
 
 local ArenasDropDown = DungeonsSection:Dropdown({
     Text = "Dungeons",
-    List = DungeonTable,
-    Callback = function(Value)
-        SelectedDungeon = Value;
+    Callback = function(v)
+        SelectedDungeon = v;
     end
 })
 
@@ -93,10 +118,27 @@ DungeonsSection:Button({
             [3] = Difficulty
         }
 
-        game:GetService("ReplicatedStorage").Events.ME:FireServer(ohTable1)
-
+        game:GetService("ReplicatedStorage").Events.ME:FireServer(ohTable1);
+    --[[
         for i, val in pairs(ohTable1) do
             print(val)
         end
+    ]]--
     end
-})  
+})
+
+-- Difficulties
+local TptoMobDropwdown = TPtoMobSection:Dropdown({
+    Text = "Mob",
+    List = MobTable,
+    Callback = function(v)
+        selectedMob = v;
+    end
+})
+
+TPtoMobSection:Button({
+    Text = "Click to TP",
+    Callback = function()
+        FuncTPtoMob();
+    end
+})
