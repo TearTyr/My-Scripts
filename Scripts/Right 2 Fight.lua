@@ -28,7 +28,6 @@ local Dungeons = game:GetService("Workspace").Map.Dungeons
 local Blowjob = game.Players.LocalPlayer.Character.Head
 -- getgenvs
 getgenv().KillAura = false;
-getgenv().AutoFarm = false;
 -- Aura Related
 local Move;
 -- Dungeon Related
