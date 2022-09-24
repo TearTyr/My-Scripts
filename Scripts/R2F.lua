@@ -23,6 +23,9 @@ local DungeonsSection = StuffTab:Section({
 local TPtoMobSection = StuffTab:Section({
     Text = "TP to Mob"
 })
+local MiniQuestSection = StuffTab:Section({
+    Text = "Mini Quest"
+})
 
 local Dungeons = game:GetService("Workspace").Map.Dungeons
 local Blowjob = game.Players.LocalPlayer.Character.Head
@@ -38,8 +41,11 @@ local SelectedDungeon
 -- Auto TP Related
 local MobTable = {}
 local selectedMob;
+-- Mini Quests Related
+local MiniQuestNames = {}
+local selectedMiniQuest;
 
--- Getting All Possible Arenas
+-- Getting Tables and stuff
 for i,v in next, game:GetService("Workspace").Map.Dungeons:GetChildren() do
     if not table.find(DungeonTable, v.Name) then
         table.insert(DungeonTable, v.Name)
@@ -51,6 +57,12 @@ for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
         if not table.find(MobTable,v.Parent.Name) then
         table.insert(MobTable, v.Parent.Name)
         end;
+    end;
+end
+
+for i,v in next, game:GetService("ReplicatedStorage").MiniQuests:GetDescendants() do
+    if not table.find(MiniQuestNames,v.Name) then
+        table.insert(MiniQuestNames, v.Name)
     end;
 end
 
@@ -138,9 +150,26 @@ local TptoMobDropwdown = TPtoMobSection:Dropdown({
 })
 
 TPtoMobSection:Button({
-    Text = "Click to TP",
+    Text = "TP to Selected Mob",
     Callback = function()
         FuncTPtoMob();
     end
 })
+
+-- Difficulties
+local MiniQuestDropdown = MiniQuestSection:Dropdown({
+    Text = "Select MiniQuest",
+    List = MiniQuestNames,
+    Callback = function(v)
+        selectedMiniQuest = v;
+    end
+})
+
+MiniQuestSection:Button({
+    Text = "Click to Start Mission",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Events.StartMiniQuest:FireServer(selectedMiniQuest, Blowjob)
+    end
+})
+
 StuffTab:Select()
