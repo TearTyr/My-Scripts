@@ -41,7 +41,9 @@ local selectedMob;
 
 -- Getting All Possible Arenas
 for i,v in next, game:GetService("Workspace").Map.Dungeons:GetChildren() do
-    table.insert(DungeonTable, v.Name)
+    if not table.find(DungeonTable, v.Name) then
+        table.insert(DungeonTable, v.Name)
+    end;
 end
 
 for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
