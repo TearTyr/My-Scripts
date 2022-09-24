@@ -31,18 +31,17 @@ local Dungeons = game:GetService("Workspace").Map.Dungeons
 local Blowjob = game.Players.LocalPlayer.Character.Head
 -- getgenvs
 getgenv().KillAura = false;
-getgenv().AutoFarm = false;
 -- Aura Related
 local Move;
 -- Dungeon Related
-local Difficulty = ''
-local DungeonTable = {}
-local SelectedDungeon
+local Difficulty = '';
+local DungeonTable = {};
+local SelectedDungeon;
 -- Auto TP Related
-local MobTable = {}
+local MobTable = {};
 local selectedMob;
 -- Mini Quests Related
-local MiniQuestNames = {}
+local MiniQuestNames = {};
 local selectedMiniQuest;
 
 -- Getting Tables and stuff
@@ -76,28 +75,39 @@ function FuncTPtoMob()
 end
 
 function FuncKillAura()
-    for i,v in next, game:GetService("Workspace").Bots.AI:GetChildren() do
-        local A_1 = {
-            [1] = "damage",
-            [2] = v.UpperTorso,
-            [3] = Vector3.new(v.HumanoidRootPart.Position),
-            [4] = game:GetService("ReplicatedFirst").Moves.BTStrike4,   
-            [5] = Move,
-            [6] = 1.4766920853780947
-        }
-        game:GetService("ReplicatedStorage").Events.ME:FireServer(A_1)
-        task.wait();
-    end
+    pcall(function()
+        for i,v in next, game:GetService("Workspace").Bots.AI:GetChildren() do
+            local A = {
+                [1] = "damage",
+                [2] = v.UpperTorso,
+                [3] = Vector3.new(v.HumanoidRootPart.Position),
+                [4] = game:GetService("ReplicatedFirst").Moves.BTStrike4,   
+                [5] = Move,
+                [6] = 1.4766920853780947
+            }
+            game:GetService("ReplicatedStorage").Events.ME:FireServer(A)
+            task.wait();
+        end
+    end)
 end
+-- Difficulties
+local MoveDropdown = KillAuraSection:Dropdown({
+    Text = "Move",
+    List = {'Fisticuffs', 'Frenzy', 'Beast'},
+    Callback = function(v)
+        Move = v;
+    end
+})
 
 KillAuraSection:Toggle({
     Text = "Kill Aura",
     Callback = function(v)
     KillAura = v;
-        if ( KillAura ) then
+        if KillAura then
             task.spawn(function()
                 while KillAura do
                     FuncKillAura()
+                    task.wait()
                 end
             end)
         end;
@@ -168,7 +178,7 @@ local MiniQuestDropdown = MiniQuestSection:Dropdown({
 MiniQuestSection:Button({
     Text = "Click to Start Mission",
     Callback = function()
-        game:GetService("ReplicatedStorage").Events.StartMiniQuest:FireServer(selectedMiniQuest, Blowjob)
+        game:GetService("ReplicatedStorage").Events.StartMiniQuest:FireServer(selectedMiniQuest, 'Created by Anon')
     end
 })
 
