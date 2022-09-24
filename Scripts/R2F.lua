@@ -101,6 +101,7 @@ local DifficultyDropDown = DungeonsSection:Dropdown({
 
 local ArenasDropDown = DungeonsSection:Dropdown({
     Text = "Dungeons",
+    List = DungeonTable,
     Callback = function(v)
         SelectedDungeon = v;
     end
