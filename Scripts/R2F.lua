@@ -82,7 +82,7 @@ function FuncKillAura()
                 [2] = v.UpperTorso,
                 [3] = Vector3.new(v.HumanoidRootPart.Position),
                 [4] = game:GetService("ReplicatedFirst").Moves.BTStrike4,   
-                [5] = Move,
+                [5] = Move or math.random(Move),
                 [6] = 1.4766920853780947
             }
             game:GetService("ReplicatedStorage").Events.ME:FireServer(A)
@@ -181,5 +181,7 @@ MiniQuestSection:Button({
         game:GetService("ReplicatedStorage").Events.StartMiniQuest:FireServer(selectedMiniQuest, 'Created by Anon')
     end
 })
+
+game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
 
 StuffTab:Select()
