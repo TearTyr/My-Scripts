@@ -40,7 +40,7 @@ local GUISection = MiscTab:Section({
 })
 
 task.spawn(function()
-    local Blowjob = game:GetService("Players").LocalPlayer:FindFirstChild("Character"):FindFirstChild("Head")
+    local Blowjob = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Head")
 end)
 -- getgenvs
 getgenv().KillAura = false;
