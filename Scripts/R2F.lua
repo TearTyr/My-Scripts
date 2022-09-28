@@ -13,21 +13,33 @@ local Flags = Library.Flags
 
 local StuffTab = Window:Tab({
     Text = "Everything"  
+})
+
+local MiscTab = Window:Tab({
+    Text = "Miscellaneous"  
 })  
+
 local KillAuraSection = StuffTab:Section({
     Text = "Kill Aura"
 })
+
 local DungeonsSection = StuffTab:Section({
     Text = "Dungeons"
 })
+
 local TPtoMobSection = StuffTab:Section({
     Text = "TP to Mob"
 })
+
 local MiniQuestSection = StuffTab:Section({
     Text = "Mini Quest"
 })
 
-local Blowjob = game.Players.LocalPlayer.Character.Head
+local GUISection = MiscTab:Section({
+    Text = "GUI"
+})
+
+local Blowjob = game:GetService("Players").LocalPlayer.Character.Head
 -- getgenvs
 getgenv().KillAura = false;
 -- Aura Related
@@ -93,6 +105,7 @@ function FuncKillAura()
         end
     end)
 end
+StuffTab:Select()
 -- Difficulties
 local MoveDropdown = KillAuraSection:Dropdown({
     Text = "Move",
@@ -185,12 +198,16 @@ MiniQuestSection:Button({
     end
 })
 
-game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
-
-StuffTab:Select()
-
-game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
-        queue_on_teleport('https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua')
+GUISection:Toggle({
+    Text = "Keep GUI?",
+    Callback = function(v)
+        if v and queue_on_teleport then
+            queue_on_teleport([[
+              game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
+              repeat task.wait(.1) until game:GetService('Players').LocalPlayer
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua", true))()
+            ]])
+        end
     end
-end)
+})
+game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
