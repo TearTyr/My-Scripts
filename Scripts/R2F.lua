@@ -4,7 +4,7 @@ repeat task.wait() until game:IsLoaded();
     UI Library Made by ZCute(https://v3rmillion.net/member.php?action=profile&uid=1431869)
         he makes cool libs!1!
 ]]-- 
-local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Unnamed/main/Library.lua'))()
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Libraries/main/Shaman/Library.lua'))()
 local Window = Library:Window({
     Text = "Right 2 Fight Script"
 })
