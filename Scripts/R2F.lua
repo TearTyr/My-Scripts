@@ -39,7 +39,7 @@ local GUISection = MiscTab:Section({
     Text = "GUI"
 })
 
-local Blowjob = game:GetService("Players").LocalPlayer.Character.Head
+local Blowjob = game:GetService("Players").LocalPlayer:WaitForChild("Character"):WaitForChild("Head")
 -- getgenvs
 getgenv().KillAura = false;
 -- Aura Related
@@ -105,7 +105,7 @@ function FuncKillAura()
         end
     end)
 end
-StuffTab:Select()
+
 -- Difficulties
 local MoveDropdown = KillAuraSection:Dropdown({
     Text = "Move",
@@ -159,8 +159,8 @@ DungeonsSection:Button({
 
         game:GetService("ReplicatedStorage").Events.ME:FireServer(ohTable1);
     --[[
-        for i, val in pairs(ohTable1) do
-            print(val)
+        for i, v in pairs(ohTable1) do
+            print(v)
         end
     ]]--
     end
@@ -211,3 +211,5 @@ GUISection:Toggle({
 })
 
 game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
+
+StuffTab:Select()
