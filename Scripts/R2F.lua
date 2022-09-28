@@ -39,7 +39,9 @@ local GUISection = MiscTab:Section({
     Text = "GUI"
 })
 
-local Blowjob = game:GetService("Players").LocalPlayer:WaitForChild("Character"):WaitForChild("Head")
+task.spawn(function()
+    local Blowjob = game:GetService("Players").LocalPlayer:FindFirstChild("Character"):FindFirstChild("Head")
+end)
 -- getgenvs
 getgenv().KillAura = false;
 -- Aura Related
