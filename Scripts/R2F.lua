@@ -203,11 +203,11 @@ GUISection:Toggle({
     Callback = function(v)
         if v and queue_on_teleport then
             queue_on_teleport([[
-              game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
               repeat task.wait(.1) until game:GetService('Players').LocalPlayer
               loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua", true))()
             ]])
         end
     end
 })
+
 game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
