@@ -206,6 +206,7 @@ GUISection:Toggle({
         if v and queue_on_teleport then
             queue_on_teleport([[
               repeat task.wait(.1) until game:GetService('Players').LocalPlayer
+              task.wait(5)
               loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua", true))()
             ]])
         end
