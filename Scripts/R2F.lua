@@ -13,7 +13,7 @@ local Flags = Library.Flags
 
 local StuffTab = Window:Tab({
     Text = "Everything"  
-})
+})  
 local KillAuraSection = StuffTab:Section({
     Text = "Kill Aura"
 })
@@ -27,7 +27,6 @@ local MiniQuestSection = StuffTab:Section({
     Text = "Mini Quest"
 })
 
-local Dungeons = game:GetService("Workspace").Map.Dungeons
 local Blowjob = game.Players.LocalPlayer.Character.Head
 -- getgenvs
 getgenv().KillAura = false;
@@ -44,32 +43,36 @@ local selectedMob;
 local MiniQuestNames = {};
 local selectedMiniQuest;
 
--- Getting Tables and stuff
-for i,v in next, game:GetService("Workspace").Map.Dungeons:GetChildren() do
-    if not table.find(DungeonTable, v.Name) then
-        table.insert(DungeonTable, v.Name)
-    end;
-end
-
-for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
-    if v:FindFirstChild("TouchInterest") then
-        if not table.find(MobTable,v.Parent.Name) then
-        table.insert(MobTable, v.Parent.Name)
+pcall(function()
+    -- Getting Tables and stuff
+    for i,v in next, game:GetService("Workspace").Map.Dungeons:GetChildren() do
+        if not table.find(DungeonTable, v.Name) then
+            table.insert(DungeonTable, v.Name)
         end;
-    end;
-end
+    end
 
-for i,v in next, game:GetService("ReplicatedStorage").MiniQuests:GetDescendants() do
-    if not table.find(MiniQuestNames,v.Name) then
-        table.insert(MiniQuestNames, v.Name)
-    end;
-end
+    for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
+        if v:FindFirstChild("TouchInterest") then
+            if not table.find(MobTable,v.Parent.Name) then
+                table.insert(MobTable, v.Parent.Name)
+            end;
+        end;
+    end
+
+    for i,v in next, game:GetService("ReplicatedStorage").MiniQuests:GetDescendants() do
+        if not table.find(MiniQuestNames,v.Name) then
+            table.insert(MiniQuestNames, v.Name)
+            task.wait()
+        end;
+    end
+end)
 
 function FuncTPtoMob()
     for i,v in next, game:GetService("Workspace").Bots.AI:GetDescendants() do
         if v.Name == selectedMob and v.Parent then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
             firetouchinterest(Blowjob, v.Parent, 0)
+            task.wait()
         end;
     end;
 end
@@ -82,7 +85,7 @@ function FuncKillAura()
                 [2] = v.UpperTorso,
                 [3] = Vector3.new(v.HumanoidRootPart.Position),
                 [4] = game:GetService("ReplicatedFirst").Moves.BTStrike4,   
-                [5] = Move or math.random(Move),
+                [5] = Move,
                 [6] = 1.4766920853780947
             }
             game:GetService("ReplicatedStorage").Events.ME:FireServer(A)
@@ -137,7 +140,7 @@ DungeonsSection:Button({
     Callback = function()
         local ohTable1 = {
             [1] = "dungeontime",
-            [2] = Dungeons[SelectedDungeon].Area,
+            [2] = game:GetService("Workspace").Map.Dungeons[SelectedDungeon].Area,
             [3] = Difficulty
         }
 
@@ -185,3 +188,4 @@ MiniQuestSection:Button({
 game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
 
 StuffTab:Select()
+queue_on_teleport('https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua')
