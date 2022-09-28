@@ -188,4 +188,9 @@ MiniQuestSection:Button({
 game:GetService("Players").LocalPlayer.PlayerGui.Notif:Fire("Script Created by AnonMytical!")
 
 StuffTab:Select()
-queue_on_teleport('https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua')
+
+game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
+    if State == Enum.TeleportState.Started then
+        queue_on_teleport('https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/R2F.lua')
+    end
+end)
