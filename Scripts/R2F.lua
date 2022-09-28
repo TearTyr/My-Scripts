@@ -4,8 +4,7 @@ repeat task.wait() until game:IsLoaded();
     UI Library Made by ZCute(https://v3rmillion.net/member.php?action=profile&uid=1431869)
         he makes cool libs!1!
 ]]-- 
-local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Unnamed/main/Library.lua'))()
-Library.Theme = "Dark"
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Libraries/main/Shaman/Library.lua'))()
 local Window = Library:Window({
     Text = "Right 2 Fight Script"
 })
@@ -24,7 +23,8 @@ local KillAuraSection = StuffTab:Section({
 })
 
 local DungeonsSection = StuffTab:Section({
-    Text = "Dungeons"
+    Text = "Dungeons",
+    Side = "Right"
 })
 
 local TPtoMobSection = StuffTab:Section({
@@ -32,7 +32,8 @@ local TPtoMobSection = StuffTab:Section({
 })
 
 local MiniQuestSection = StuffTab:Section({
-    Text = "Mini Quest"
+    Text = "Mini Quest",
+    Side = "Right"
 })
 
 local GUISection = MiscTab:Section({
@@ -42,6 +43,7 @@ local GUISection = MiscTab:Section({
 task.spawn(function()
     local Blowjob = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Head")
 end)
+
 -- getgenvs
 getgenv().KillAura = false;
 -- Aura Related
@@ -174,7 +176,7 @@ local TptoMobDropwdown = TPtoMobSection:Dropdown({
     List = MobTable,
     Callback = function(v)
         selectedMob = v;
-    end
+    end 
 })
 
 TPtoMobSection:Button({
@@ -202,6 +204,7 @@ MiniQuestSection:Button({
 
 GUISection:Toggle({
     Text = "Keep GUI?",
+    Default = true,
     Callback = function(v)
         if v and queue_on_teleport then
             queue_on_teleport([[
