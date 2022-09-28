@@ -113,6 +113,7 @@ end
 -- Difficulties
 local MoveDropdown = KillAuraSection:Dropdown({
     Text = "Move",
+    Default = 'Beast',
     List = {'Fisticuffs', 'Frenzy', 'Beast'},
     Callback = function(v)
         Move = v;
