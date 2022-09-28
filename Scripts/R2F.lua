@@ -121,6 +121,7 @@ local MoveDropdown = KillAuraSection:Dropdown({
 
 KillAuraSection:Toggle({
     Text = "Kill Aura",
+    Default = true,
     Callback = function(v)
     KillAura = v;
         if KillAura then
