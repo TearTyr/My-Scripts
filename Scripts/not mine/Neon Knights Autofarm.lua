@@ -41,4 +41,4 @@ end
 
 saveSettings();
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other.lua"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/not%20mine/other.lua"))();
