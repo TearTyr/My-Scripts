@@ -374,7 +374,7 @@ game.ReplicatedStorage.Ints.Regiontrig:FireServer("Leave");
 end)
 
 --//Load Script
-syn.queue_on_teleport([[
+queue_on_teleport([[
     repeat task.wait() until game:IsLoaded();
  
     local Player = game.Players.LocalPlayer;
@@ -383,7 +383,7 @@ syn.queue_on_teleport([[
  
     repeat task.wait() until not Player.PlayerGui:FindFirstChild("Intro");
  
-    loadstring(game:HttpGet("https://pastebin.com/raw/FNw0Q7Dm"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other.lua"))();
 ]])
 
 task.wait(3);
