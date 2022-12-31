@@ -91,7 +91,7 @@ return
 end
 
 if game.Workspace:FindFirstChild("Dungeon") and Settings.NextRegion == true and not game.Workspace:FindFirstChild("Live") then
-    loadstring(game:HttpGet("https://pastebin.com/raw/Tw73r4hP"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other2.lua"))();
     return
 end
 
@@ -125,7 +125,7 @@ syn.queue_on_teleport([[
 
     task.wait(1);
 
-    loadstring(game:HttpGet("https://pastebin.com/raw/Tw73r4hP"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other2.lua"))();
 ]])
 
 if Run.Runsummary.Visible == true then
