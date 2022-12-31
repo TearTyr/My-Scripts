@@ -383,7 +383,7 @@ queue_on_teleport([[
  
     repeat task.wait() until not Player.PlayerGui:FindFirstChild("Intro");
  
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other.lua"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/not%20mine/other.lua"))();
 ]])
 
 task.wait(3);
