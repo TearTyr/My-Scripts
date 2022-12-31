@@ -125,7 +125,7 @@ queue_on_teleport([[
 
     task.wait(1);
 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/other2.lua"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TearTyr/My-Scripts/main/Scripts/not%20mine/other2.lua"))();
 ]])
 
 if Run.Runsummary.Visible == true then
