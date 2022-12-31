@@ -116,7 +116,7 @@ MT.__namecall = newcclosure(function(self, ...)
 end)
 
 --//Load Script
-syn.queue_on_teleport([[
+queue_on_teleport([[
     repeat task.wait() until game:IsLoaded();
 
     local Player = game.Players.LocalPlayer;
