@@ -4,7 +4,7 @@
 local Player = game.Players.LocalPlayer;
 local Character = Player.Character:WaitForChild("Playermodel"):WaitForChild("Charmodel");
 local HRP = Character:WaitForChild("HumanoidRootPart");
-local ToggleKey = Enum.KeyCode.X
+local ToggleKey = Enum.KeyCode.V
 
 if game.Workspace:FindFirstChild("Live") then
 return
